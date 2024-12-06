@@ -1,0 +1,5 @@
+Upadhyaya,Varenya	vupadhyaya@umassd.edu	Emergence of GR from String Theory
+Ravichandran,Adhrit	aravichandran@umassd.edu	Numerical Relativity and Surrogate Models
+Singh,Swati	ssingh19@umassd.edu	Scalar-Tensor Theory
+Vinod,Pranav	pvinod@umassd.edu	Singularity Theorems
+

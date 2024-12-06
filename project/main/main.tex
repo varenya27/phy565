@@ -1,0 +1,239 @@
+\documentclass{article}
+
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+% \AddToHook{cmd/section/before}{\clearpage}
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}} %for longer brackets
+
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\abstract}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
+
+\usepackage{physics}
+%\usepackage[backend=biber,style=numeric, sorting=ynt]{biblatex}
+
+%\addbibresource{main.bib}
+\newcommand*{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\HRule}{\rule{\linewidth}{0.3mm}} % Defines a new command for the horizontal lines, change thickness here
+\newcommand{\greater}
+% \usepackage[utf8]{inputenc}
+
+% \DeclareUnicodeCharacter 
+% \DeclareUnicodeCharacter 
+
+% \usepackage{hyperref}
+\usepackage{color}
+\usepackage{float}
+%\newcommand{\rthis}[1]{\textcolor{red}{#1}}
+%\newcommand{\rthis}[1]{\textcolor{black}{#1}}
+\newcommand{\rthis}[1]{\textcolor{black}{\textbf{#1}}}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage[plainpages=false, colorlinks=true, anchorcolor=blue, linkcolor=blue, citecolor=blue, bookmarks=false]{hyperref}
+% \usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{lipsum}
+% \usepackage[table,xcdraw]{xcolor}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
+\begin{document}
+% \maketitle
+\newcolumntype{L}{>{$}c<{$}}
+
+\begin{center}
+    
+\textsc{\Large PHY565 Project Report}\\[0.3cm] % Major heading such as course name
+
+\HRule \\[0.4cm]
+    { \huge The Emergence of General Relativity from String Theory\\}
+\HRule \\
+\begin{flushright}
+    Varenya \textsc{Upadhyaya}\\[1cm] % Your name
+
+\end{flushright}
+\end{center} % Center everything on the page
+
+\section{Lightning Review of General Relativity}
+\subsection{Introduction and General Ideas}
+\begin{enumerate}
+    \item metric
+    \item Riemann Tensor, Ricci Scalar
+    \item Energy-Stress Tensor
+    \item EFEs
+\end{enumerate}
+\subsection{The Point Particle}
+Before discussing the action and other relevant quantities for a string, it is worth discussing the point particle. This section contains a description of the action for a relativistic point particle and how it can be quantized. Although the derivations might seem straightforward here, they help building some intuition for when similar things are done for the string. The action for a point particle is:
+\begin{equation}
+    S = -m\int dt\sqrt{1-\dot{\vec{x}}\cdot \dot{\vec{x}}}\label{pp:act1}
+\end{equation}
+where $m$ is the mass terms and coordinates is $X^\mu=(t,\vec{x}), \,\mu=0,1\dots D-1$. Here, we're assuming a D-dimensional Minkowski space. This action can be rewritten in terms of the affine parameter $\lambda$ as 
+\begin{equation}
+    S = -m\int d\lambda \sqrt{-\eta_{\mu\nu}\frac{dX^\mu}{d\lambda}\frac{dX^\nu}{d\lambda}} \label{pp:act2}
+\end{equation}
+It is straightforward to see that a redefinition of the affine parameter would leave the action unchanged. Generally, the affine parameter is taken to be the proper time. Such a redefinition or reparametrization invariance is referred to as the gauge invariance. Introducing this "redundancy" in the action is usually done to view the time and space coordinates equivalently. Under a Poincar\'e transformation $(\Lambda,a)$,
+\begin{equation}
+    X^\mu \xrightarrow{} X'^\mu = \Lambda^\mu\,_\nu X^\nu + a^\mu
+\end{equation}
+The action remains invariant; the upshot of introducing the gauge symmetry was that the Poincar\'e symmetry is now a global symmetry on the worldline.\\
+The corresponding equations of motion can be achieved by minimizing the action in Eq. \eqref{pp:act1},
+\begin{align}
+    \frac{\partial \vec{p}}{\partial t} = 0,\\
+    \vec{p} = \frac{m\vec{x}}{\sqrt{1-\vec{x}^2}}
+\end{align}
+
+Another action that can be used to describe the point particle shows up when we introduce a Lagrange multiplier to get rid of the square root in Eq. \eqref{pp:act2}
+\begin{equation}
+	S = \frac{1}{2}\int d\tau \left({e^{-1}}\dot{X}^2 - m^2e \right) \label{pp:act3}
+\end{equation}
+where $\dot{X}^2 = \eta_{\mu\nu}\dot{X^\mu}\dot{X^\nu}$= As a check, we can show that eliminating $e$ will reintroduce the square root by computing the equation of motion for $e$ by minimizing \eqref{pp:act3}:
+\begin{align}
+    -e^{-2}\dot{X}^2-m^2=0\\
+    \implies e = m^{-1} \sqrt{-\dot{X}^2}
+\end{align}
+thus recovering the original action. This action is particularly interesting because when we assign $e=\sqrt{-g_{\tau\tau}}$, it looks like we introduced 1 dimensional gravity on the particle's worldline. 
+\begin{equation}
+	S = -\frac{1}{2} \int d\tau \sqrt{-g_{\tau\tau}}\brak{g^{\tau\tau}\dot{X}^2 + m^2}
+\end{equation}
+The degrees of freedom are still the same as before (since $e$ is fixed by its equation of motion) but this action now works for $m=0$ particles and doesn't contain the square root (which would make quantization difficult).\\
+
+A similar approach can be adopted when we consider the string. In the following sections, we will introduce similar actions for a 'relativistic string' and explore their symmetries. Following that, we will write down the corresponding equations of motion and then quantize the theory.  
+
+
+
+
+\section{String Theory Formalism}
+%\subsection{Introduction}
+String Theory is built on the idea that instead of point particles, matter is made up of objects with one spatial and one temporal dimension -- strings. These strings can be thought of as spacetime objects that come with internal coordinates $(\tau,\sigma)$  with the $D$-dimensional external space having coordinates $X^\mu$. As the string moves through spacetime, it sweeps out a worldsheet, which can be identified by assigning the external coordinates $(X^0,X^1\dots X^{D-1})$ to each internal coordinate $(\tau,\sigma)$. This can be thought of as a $D$-component vector field on the string, such that any change in this field would correspond to some motion in the external (or target) space.\\
+
+\subsection{Nambu-Goto and Polyakov Actions}
+As before, we start off by defining some actions for the string that we can then use to study the system. The action for a point particle is proportional to the length of its trajectory (or the worldline) and analogously, the action for a string would be proportional to the area of the worldsheet it traces out. Minimizing this area/action would then result in the equations of motion (following from the principle of least action). The task now remains to calculate the area for the worldsheet (to which we can add a proportionality constant to get at the action).\\ 
+
+To calculate the area, we define a new quantity called the 'induced metric' $\gamma_{\alpha\beta}$ which is essentially the pull-back\footnote{put pullback explanation here} of the minkowski metric (or for a curved target space, the general metric) 	
+\begin{equation}
+	\gamma_{\alpha\beta} = \eta_{\mu\nu} \frac{\partial X^\mu}{\partial \sigma^\alpha}\frac{\partial X^\nu}{\partial \sigma^\beta} \label{eq:ind_met}
+\end{equation}
+The induced metric can then be written using matrices as,
+\renewcommand{\arraystretch}{2.0}
+\begin{align}
+	\gamma_{\alpha\beta}&=\eta_{\mu\nu}\pdv{X^\mu}{\sigma^\alpha}\pdv{X^\nu}{\sigma^\beta} = \pdv{X}{\sigma^\alpha}\cdot\pdv{X}{\sigma^\beta}\\
+	(\gamma_{\alpha\beta}) &= 
+	\begin{pmatrix} 
+		\dfrac{\partial X}{\partial \sigma^0} \cdot \dfrac{\partial X}{\partial\sigma^0} & \dfrac{\partial X}{\partial\sigma^0} \cdot \dfrac{\partial X}{\partial\sigma^1} \\
+		\dfrac{\partial X}{\partial \sigma^1} \cdot \dfrac{\partial X}{\partial\sigma^0} & \dfrac{\partial X}{\partial\sigma^1} \cdot \dfrac{\partial X}{\partial\sigma^1} 
+	\end{pmatrix} = 
+	\begin{pmatrix}
+		\dot{X} \cdot \dot{X} & \dot{X} \cdot X' \\
+		X' \cdot \dot{X} & X' \cdot X'
+	\end{pmatrix}\\
+	\implies \gamma &= (\dot{X}\cdot\dot{X})(X'\cdot X') - (\dot{X}\cdot X')^2
+\end{align}
+where $\gamma = det(\gamma_{\alpha\beta})$. The area of the worldsheet is then,
+\begin{equation}
+	A = \int d^2\sigma \sqrt{-\gamma} = \int d^2\sigma \sqrt{(\dot{X}\cdot\dot{X})(X'\cdot X') - (\dot{X}\cdot X')^2
+}
+\end{equation}
+The action (which is proportional to the area) is thus:
+\begin{equation}
+	S = -T\int d^2\sigma \sqrt{-\gamma} = -T\int d^2\sigma \sqrt{(\dot{X}\cdot\dot{X})(X'\cdot X') - (\dot{X}\cdot X')^2}\label{eq:nambu_goto}
+\end{equation}
+This form of the action is known as the Nambu-Goto action. The proportionality constant $T$ here can be thought of as the 'tension' of the string. The Nambu-Goto action has two symmetries:
+\begin{enumerate}
+	\item Poincar\'e symmetry, under the transformation $X^\mu \rightarrow \Lambda^\mu\,_\nu X^\nu + a^\mu$
+	\item Gauge invariance when the internal coordinates are rewritten, $\sigma^\mu \rightarrow \tilde{\sigma}^\mu(\sigma)$
+\end{enumerate}
+To get at the equations of motion, we need the lagrangian from \eqref{eq:nambu_goto},
+\begin{align}
+	L = -T\sqrt{(\dot{X}\cdot\dot{X})(X'\cdot X') - (\dot{X}\cdot X')^2}
+\end{align}
+Using this lagrangian, we can write up the equations of motion,
+\begin{align}
+	\pdv{}{\tau}\brak{\pdv{L}{\dot{X}^\mu}}&+\pdv{}{\sigma}\brak{\pdv{L}{X'^\mu}}=0\\
+	\implies \pdv{}{\tau}\brak{-T\frac{(\dot{X}\cdot X')X'_\mu-X'^2\dot{X}_\mu}{\sqrt{(\dot{X}\cdot\dot{X})(X'\cdot X') - (\dot{X}\cdot X')^2}}}&+\pdv{}{\sigma}\brak{-T\frac{(\dot{X}\cdot X')\dot{X}_\mu-\dot{X}^2X'_\mu}{\sqrt{(\dot{X}\cdot\dot{X})(X'\cdot X') - (\dot{X}\cdot X')^2}}} =0 \label{eq:ng_eom}
+\end{align}
+Since this looks rather convoluted, we could minimize the first action in Eq.\eqref{eq:nambu_goto} to get the following equations of motion:
+\begin{equation}
+	\partial_\alpha\brak{\sqrt{-\gamma}\gamma^{\alpha\beta}\partial_\beta X^\mu} =0\label{eq:ng_eom2}
+\end{equation}
+While these look slightly better, solving them would still require dealing with something similar to Eq.\eqref{eq:ng_eom}. Instead of solving Eqs.(\ref{eq:ng_eom},\ref{eq:ng_eom2}), it would be easier to modify the action so that the square root term would be eliminated. In order to do this, we introduce a new field into the mix,
+\begin{equation}
+	S = -\frac{1}{4\pi\alpha'} \int d^2\sigma \sqrt{-g}g^{\alpha\beta}\partial_\alpha X^\mu \partial_\beta X^\nu \eta_{\mu\nu} \label{eq:act_poly}
+\end{equation}
+This is known as the Polyakov action. $g^{\alpha\beta}$ here is the dynamical metric on the worldsheet. Analogous to the second action in the point particle case (Eq.\eqref{pp:act2}), it looks like we intrdouced a 2 dimensional gravitational field coupled to the $X$ field. Using the lagrangian from this action and following a similar procedure as earlier (with some index manipulation), we get the following equation of motion:
+\begin{equation}
+	\partial_\alpha(\sqrt{-g}g^{\alpha\beta}\partial_\beta X_\mu)=0 \label{eq:poly_eom}
+\end{equation}
+This equation is similar in form to Eq.\eqref{eq:ng_eom2} except that we now have an independent variable $g^{\alpha\beta}$ which can be determined by varying Eq.\eqref{eq:act_poly} with respect to $g$. In fact, this field/metric is related to the induced metric by a scale factor as,
+\begin{equation}
+	g_{\alpha\beta}=2f(\sigma)\partial_\alpha X\cdot\partial_\beta X  = 2f(\sigma)\gamma_{\alpha\beta}
+\end{equation}
+Note that here, since we have $\sqrt{-\gamma}\gamma^{\alpha\beta}$ in the action, f drops out when we calculate the equations of motion. This means that the Polyakov action enjoys an additional symmetry:
+\begin{enumerate}
+	\item Poincar\'e symmetry, under the transformation $X^\mu \rightarrow \Lambda^\mu\,_\nu X^\nu + a^\mu$
+	\item Gauge invariance when the internal coordinates are rewritten, $\sigma^\mu \rightarrow \tilde{\sigma}^\mu(\sigma)$. The corresponding transformations are:
+		\begin{align}
+			X^\mu(\sigma) \rightarrow \tilde{X}^\mu(\tilde{\sigma}) = X^\mu(\sigma)\\
+			g_{\alpha\beta}(\sigma) \rightarrow \pdv{\sigma^\lambda}{\tilde{\sigma}^\alpha}\pdv{\sigma^\rho}{\tilde{\sigma}^\beta}g_{\lambda\rho}(\sigma)
+		\end{align}
+	\item Conformal Symmetry or Weyl Invariance: The consequence of adding a free field into the action is the conformal symmetry which basically means that the internal metric can be scaled arbitrarily,
+		\begin{equation}
+			g_{\alpha\beta} \rightarrow e^{2\phi(\sigma)}g_{\alpha\beta}
+		\end{equation}
+	as we saw before that the scale factor drops out from the action. Physically, Weyl invariances are angle preserving symmetries, which essentially means that any two lines should have the same angles, if their corresponding metric is Weyl transformed. This seemingly serendipitous symmetry is a consequence of choosing an object in two dimensions (since the factor cancels out accordingly) and the fact that we haven't introduced any potential yet.
+\end{enumerate}
+Since we have gauge invariance, it makes sense to make the metric locally and conformally flat, for some arbitrary function $\phi$,
+\begin{equation}
+	g_{\alpha\beta} = e^{2\phi}\eta_{\alpha\beta}
+\end{equation}
+This sort of a gauge is referred to as a Conformal Gauge. Additionally, since $\phi$ is arbitrary, we can just set it to 0,
+\begin{equation}
+	g_{\alpha\beta} =\eta_{\alpha\beta}
+\end{equation}
+
+\textbf{Checkpoint:} Before proceeding to write the equation of motion using the updated Polyakov action, here's a quick recap of what we just did. We started out by choosing a 2 dimensional object (ie. the string) instead of a point particle and wrote down the action analogously (ie. the Nambu-Goto action) by introducing a pullback metric. This action however contained a square root term is difficult to quantize using path integral techniques. To get rid of this, we introduced an independent field (or the worldline metric) that in turn imposed conformal symmetry on the action. Using the gauge invariance and the conformal symmetry we then set this metric to be flat, which simplifies the equations of motion by a whole lot! In what follows, we will look at the resultant solution and then quantize it using a method called Lightcone Quantization.
+
+\subsection{Equations of Motion}
+The Polyakov action now becomes,
+\begin{equation}
+	S = -\frac{1}{4\pi\alpha'}\int d^2\sigma \partial_\alpha X\cdot\partial^\alpha X
+\end{equation}
+for which the correspoding lagrangian is:
+\begin{equation}
+	L  = \frac{1}{4\pi\alpha'} \partial_\beta X^\nu\partial_\gamma X^\rho\eta^{\beta\gamma}\eta_{\nu\rho}
+\end{equation}
+giving the equations of motion,
+\begin{align}
+	\partial_\alpha\brak{\frac{1}{4\pi\alpha'}\frac{\partial}{\partial(\partial_\alpha X^\mu)}\brak{\partial_\beta X^\nu\partial_\gamma X^\rho\eta^{\beta\gamma}\eta_{\nu\rho}}} = 0\\
+	\implies \partial_\alpha\partial^\alpha X_\mu = \Box X=0
+\end{align}
+The equations of motion for $X$ reduced to the free wave equation but we're still left with the equations of motion for $g_{\alpha\beta}$. Variation of the action with respect to the metric give rise to the stress-energy tensor. By definition,
+\begin{equation}
+	T_{\alpha\beta}  =- \frac{2}{T\sqrt{-g}} \pdv{S}{g^{\alpha\beta}}
+\end{equation}
+where the first term on the right hand side is a normalizing factor. Varying the action with the metric gives,
+\begin{align}
+	\pdv{S}{g^{\alpha\beta}} &= -\frac{T\sqrt{-\gamma}}{2}\brak{\partial_\alpha X^\mu\partial_\beta X^\nu-\frac{1}{2}g_{\alpha\beta}g^{\rho\lambda}\partial_\rho X^\mu\partial_\lambda X^\nu}\eta_{\mu\nu}=0\\
+	\implies T_{\alpha\beta} &= \partial_\alpha X\cdot\partial_\beta X -\frac{1}{2}\eta_{\alpha\beta}\eta^{\rho\lambda}\partial_\rho X\cdot\partial_\lambda X=0\\
+	\implies T_{00} &= T_{11} = \frac{1}{2}(\dot{X}^2+X'^2) = 0\nonumber\\
+	T_{01}&=T_{10} = \dot{X}X'=0
+\end{align}
+Thus, we're looking at a free wave solution subject to two constraints.
+\subsection{Quantizing the String}
+\section{Aside: Conformal Field Theory}
+Dump the basic ideas and overall structure here.
+
+
+\section{Deriving Einstein's Equations: Generalizing the Polyakov Action}
+
+%\printbibliography
+\end{document}
