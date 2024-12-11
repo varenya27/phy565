@@ -6,72 +6,79 @@
 \addtolength{\topmargin}{-.875in}
 \addtolength{\textheight}{1.75in}
 
-% \AddToHook{cmd/section/before}{\clearpage}
-\usepackage{booktabs}% http://ctan.org/pkg/booktabs
-
+\usepackage{booktabs}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \providecommand{\brak}[1]{\ensuremath{\left(#1\right)}} %for longer brackets
-
 \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\abstract}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
 \makeatother
-
 \usepackage{physics}
 %\usepackage[backend=biber,style=numeric, sorting=ynt]{biblatex}
-
 %\addbibresource{main.bib}
 \newcommand*{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \newcommand{\HRule}{\rule{\linewidth}{0.3mm}} % Defines a new command for the horizontal lines, change thickness here
-\newcommand{\greater}
-% \usepackage[utf8]{inputenc}
-
-% \DeclareUnicodeCharacter 
-% \DeclareUnicodeCharacter 
-
-% \usepackage{hyperref}
 \usepackage{color}
 \usepackage{float}
-%\newcommand{\rthis}[1]{\textcolor{red}{#1}}
-%\newcommand{\rthis}[1]{\textcolor{black}{#1}}
-\newcommand{\rthis}[1]{\textcolor{black}{\textbf{#1}}}
+\newcommand{\rthis}[1]{\textcolor{red}{\textbf{#1}}}
 \usepackage{amsfonts,amsmath,amssymb}
 \usepackage[plainpages=false, colorlinks=true, anchorcolor=blue, linkcolor=blue, citecolor=blue, bookmarks=false]{hyperref}
 % \usepackage{natbib}
 \usepackage{enumitem}
 \usepackage{lipsum}
-% \usepackage[table,xcdraw]{xcolor}
 \usepackage{multirow}
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{caption}
 \usepackage{subcaption}
+
 \begin{document}
-% \maketitle
 \newcolumntype{L}{>{$}c<{$}}
 
 \begin{center}
-    
 \textsc{\Large PHY565 Project Report}\\[0.3cm] % Major heading such as course name
-
 \HRule \\[0.4cm]
     { \huge The Emergence of General Relativity from String Theory\\}
 \HRule \\
 \begin{flushright}
-    Varenya \textsc{Upadhyaya}\\[1cm] % Your name
-
+    Varenya \textsc{Upadhyaya}\\[1cm] 
 \end{flushright}
-\end{center} % Center everything on the page
+\end{center} 
 
 \section{Lightning Review of General Relativity}
-\subsection{Introduction and General Ideas}
-\begin{enumerate}
-    \item metric
-    \item Riemann Tensor, Ricci Scalar
-    \item Energy-Stress Tensor
-    \item EFEs
-\end{enumerate}
+% \subsection{Introduction and General Ideas}
+General Relativity is a geometric theory of gravity that discusses how matter warps spacetime and how spacetime in turn decides the trajectories of matter. It is one of the most successful models of gravity and has made numerous predictions that have stood the test of time (gravitational waves, gravitational lensing, perihilion precession in Mercury's orbit, gravitational redshift etc.). On the spacetime front, we use a mathematical quantity known as the metric to measure distances. In the absence of gravity (ie. flat spacetime) this metric is known as the Minkowski metric and takes the form $\eta_{\mu\nu}=\text{diag}(-1,1,1,1)$. This is evident how we define a line element in such a space,
+\begin{align}
+    ds^2 = -dt^2+dx^2+dy^2+dz^2 = \eta_{\mu\nu}dx^\mu dx^\nu
+\end{align}
+When we bring gravity into the mix, we upgrade to a general metric $g_{\mu\nu}$\footnote{later in this report, we will use $G_{\mu\nu}$ to represent this metric, since $g_{\mu\nu}$ will be used for the worldsheet metric} which can be thought of as the Minkowski metric with perturbations,
+\begin{align}
+    g_{\mu\nu}=\eta_{\mu\nu}+h_{\mu\nu}
+\end{align}
+Under this metric, the line element accordingly becomes,
+\begin{align}
+    ds^2 = g_{\mu\nu}dx^\mu dx^\nu
+\end{align}
+In GR, one tries to generalize various mathematical (and physical) quantities to geometries where space isn't flat. One example of this is the ordinary derivative, which is replaced by the covariant derivative. In the process of doing so, we often use Christoffel symbols which are given by,
+\begin{align}
+    \Gamma^\rho_{\mu\nu} = \frac{1}{2}g^{\rho\lambda}(\partial_\mu g_{\nu\lambda}+\partial_\nu g_{\mu\lambda}-\partial_\lambda g_{\mu\nu})
+\end{align}
+These symbols (not tensors) are useful in defining covariant derivatives, describing parallel transport and constructing the geodesic equations. They are also used to construct a very special rank-4 tensor which measures the curvature of spacetime, the Reimann Curvature Tensor. 
+\begin{align}
+    R^\mu_{\sigma\nu\rho} = \Gamma^\mu_{\rho\sigma,\nu}-\Gamma^\mu_{\nu\sigma,\rho}+\Gamma^\mu_{\nu\lambda}\Gamma^\lambda_{\rho\sigma}-\Gamma^\mu_{\rho\lambda}\Gamma^\lambda_{\nu\sigma}
+\end{align}
+This tensor pops up when we try to write down the geodesic deviation equation-- an equation which measures the rate of change of separation of a family of geodesics (in flat space such a family would be parallel lines). Another meaningful quantity that contains information about the matter and corresponding source terms is the Stress-Energy tensor $T_{\mu\nu}$. The Einstein Field Equations are a set of equations that relate the geometry/curvature spacetime ($R^\mu_{\sigma\nu\rho}$) to matter ($T_{\mu\nu}$0=)
+\begin{align}
+    R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu} = 8\pi GT_{\mu\nu}
+\end{align}
+Here, $R_\mu\nu$ is known as the Ricci curvature tensor and it is obtained by contracting indices of the Reimann Curvature tensor. $R$ is the Ricci scalar (=Tr($R_{\mu\nu}$)) and $G$ is Newton's gravitation constant.\\
+
+In vacuum, the source term is set to zero and the resultant vacuum Einstein's Field Equations are,
+\begin{align}
+    R_{\mu\nu}=0\label{eq:efe}
+\end{align}
+In this report we will try to build the theory of strings (particles with one spatial and one temporal dimension) from the ground up and arrive at Eq.\eqref{eq:efe} naturally.
 \subsection{The Point Particle}
 Before discussing the action and other relevant quantities for a string, it is worth discussing the point particle. This section contains a description of the action for a relativistic point particle and how it can be quantized. Although the derivations might seem straightforward here, they help building some intuition for when similar things are done for the string. The action for a point particle is:
 \begin{equation}
@@ -108,18 +115,13 @@ thus recovering the original action. This action is particularly interesting bec
 The degrees of freedom are still the same as before (since $e$ is fixed by its equation of motion) but this action now works for $m=0$ particles and doesn't contain the square root (which would make quantization difficult).\\
 
 A similar approach can be adopted when we consider the string. In the following sections, we will introduce similar actions for a 'relativistic string' and explore their symmetries. Following that, we will write down the corresponding equations of motion and then quantize the theory.  
-
-
-
-
 \section{String Theory Formalism}
-%\subsection{Introduction}
 String Theory is built on the idea that instead of point particles, matter is made up of objects with one spatial and one temporal dimension -- strings. These strings can be thought of as spacetime objects that come with internal coordinates $(\tau,\sigma)$  with the $D$-dimensional external space having coordinates $X^\mu$. As the string moves through spacetime, it sweeps out a worldsheet, which can be identified by assigning the external coordinates $(X^0,X^1\dots X^{D-1})$ to each internal coordinate $(\tau,\sigma)$. This can be thought of as a $D$-component vector field on the string, such that any change in this field would correspond to some motion in the external (or target) space.\\
 
 \subsection{Nambu-Goto and Polyakov Actions}
 As before, we start off by defining some actions for the string that we can then use to study the system. The action for a point particle is proportional to the length of its trajectory (or the worldline) and analogously, the action for a string would be proportional to the area of the worldsheet it traces out. Minimizing this area/action would then result in the equations of motion (following from the principle of least action). The task now remains to calculate the area for the worldsheet (to which we can add a proportionality constant to get at the action).\\ 
 
-To calculate the area, we define a new quantity called the 'induced metric' $\gamma_{\alpha\beta}$ which is essentially the pull-back\footnote{put pullback explanation here} of the minkowski metric (or for a curved target space, the general metric) 	
+To calculate the area, we define a new quantity called the 'induced metric' $\gamma_{\alpha\beta}$ which is essentially the pull-back of the minkowski metric (or for a curved target space, the general metric) 	
 \begin{equation}
 	\gamma_{\alpha\beta} = \eta_{\mu\nu} \frac{\partial X^\mu}{\partial \sigma^\alpha}\frac{\partial X^\nu}{\partial \sigma^\beta} \label{eq:ind_met}
 \end{equation}
@@ -202,7 +204,7 @@ This sort of a gauge is referred to as a Conformal Gauge. Additionally, since $\
 
 \textbf{Checkpoint:} Before proceeding to write the equation of motion using the updated Polyakov action, here's a quick recap of what we just did. We started out by choosing a 2 dimensional object (ie. the string) instead of a point particle and wrote down the action analogously (ie. the Nambu-Goto action) by introducing a pullback metric. This action however contained a square root term is difficult to quantize using path integral techniques. To get rid of this, we introduced an independent field (or the worldline metric) that in turn imposed conformal symmetry on the action. Using the gauge invariance and the conformal symmetry we then set this metric to be flat, which simplifies the equations of motion by a whole lot! In what follows, we will look at the resultant solution and then quantize it using a method called Lightcone Quantization.
 
-\subsection{Equations of Motion}
+\subsection{Equations of Motion and Constraints}
 The Polyakov action now becomes,
 \begin{equation}
 	S = -\frac{1}{4\pi\alpha'}\int d^2\sigma \partial_\alpha X\cdot\partial^\alpha X
@@ -214,7 +216,7 @@ for which the correspoding lagrangian is:
 giving the equations of motion,
 \begin{align}
 	\partial_\alpha\brak{\frac{1}{4\pi\alpha'}\frac{\partial}{\partial(\partial_\alpha X^\mu)}\brak{\partial_\beta X^\nu\partial_\gamma X^\rho\eta^{\beta\gamma}\eta_{\nu\rho}}} = 0\\
-	\implies \partial_\alpha\partial^\alpha X_\mu = \Box X=0
+	\implies \partial_\alpha\partial^\alpha X_\mu = \Box X=0 \label{eq:eom}
 \end{align}
 The equations of motion for $X$ reduced to the free wave equation but we're still left with the equations of motion for $g_{\alpha\beta}$. Variation of the action with respect to the metric give rise to the stress-energy tensor. By definition,
 \begin{equation}
@@ -227,13 +229,301 @@ where the first term on the right hand side is a normalizing factor. Varying the
 	\implies T_{00} &= T_{11} = \frac{1}{2}(\dot{X}^2+X'^2) = 0\nonumber\\
 	T_{01}&=T_{10} = \dot{X}X'=0
 \end{align}
-Thus, we're looking at a free wave solution subject to two constraints.
+Thus, we're looking at a free wave solution subject to two constraints. Before proceeding further, we will introduce a new coordinate system to simplify calculations and make quantization easier later. This coordinates are referred to as the Lightcone Coordinates and physically they represent the left and right moving waves.
+\begin{align}
+	\sigma^+ = \tau+\sigma\\
+	\sigma^- = \tau-\sigma
+\end{align}
+Under this transformation, Eq.\eqref{eq:eom} (after using the chain rule) can be rewritten as:
+\begin{align}
+	\partial_-\partial_+X^\mu&=0\\
+	\implies X^\mu(\tau,\sigma) &= X^\mu_L(\sigma^+)+X^\mu_R(\sigma^-) \label{eq:sol_LR}
+\end{align}
+where L and R mean left and right respectively. The individual components can be fourier expanded separately assuming the position $x^\mu$ and momentum $p^\mu$ (which can be derived by applying the Noether procedure on the translation symmetry) of the centre of mass as follows:
+\begin{align}
+X^\mu_L = \frac{1}{2}x^\mu+ \frac{1}{2}\alpha'p^\mu\sigma^++ i\sqrt{\frac{\alpha'}{2}}\sum_{n\neq0} \frac{1}{n}\tilde{\alpha}_n^\mu e^{-in\sigma^+}\\
+	X^\mu_R = \frac{1}{2}x^\mu+ \frac{1}{2}\alpha'p^\mu\sigma^-+ i\sqrt{\frac{\alpha'}{2}}\sum_{n\neq0} \frac{1}{n}{\alpha}_n^\mu e^{-in\sigma^-}
+\end{align}
+Here, $(\alpha^\mu_n, \tilde{\alpha}^\mu_n)$ are the Fourier coefficients for the right and left waves respectively, and $(\alpha',1/n)$ have been introduced as normalization constants.  Additionally, $X^\mu$ is real, which implies $(X^\mu_L)^*=X^\mu_L$ and $(X^\mu_R)^*=X^\mu_R$. As a consequence,
+\begin{align}
+	-i\sum_{n\neq0}\frac{1}{n}(\tilde{\alpha}_n^\mu)^*e^{in\sigma^+} &= i\sum_{n\neq0}\frac{1}{n}\tilde{\alpha}_n^\mu e^{-in\sigma^+} = i\sum_{n\neq0}\frac{1}{-n}\tilde{\alpha}_{-n}^\mu e^{in\sigma^+}\\
+	&\implies (\tilde{\alpha}_n^\mu)^* = \tilde{\alpha}_{-n}^\mu
+\end{align}
+and similarly,
+\begin{equation}
+	({\alpha}_n^\mu)^* = {\alpha}_{-n}^\mu
+\end{equation}
+The two constraints also become much simpler using the lightcone coordinates,
+\begin{align}
+	\dot{X}^2+X'^2 = \frac{1}{2}((\partial_+X)^2+(\partial_-X)^2)=0\\
+	\dot{X}X' = \frac{1}{2}((\partial_+X)^2-(\partial_-X)^2)=0
+\end{align}
+Putting the two together we get,
+\begin{equation}
+	(\partial_+X)^2 = (\partial_-X)^2 = 0\label{eq:constraint}
+\end{equation}
+Evaluating these constraints:
+\begin{align}
+	(\partial_-X)^2 &= (\partial_-X_R)^2 = 0\\
+	\partial_-X^\mu &= \frac{\alpha'}{2}p^\mu +i\sqrt{\frac{\alpha'}{2}}\sum_{n\neq0}\frac{1}{n}\alpha_n^\mu e^{-in\sigma^-}(-in)=\frac{\alpha'}{2}p^\mu +\sqrt{\frac{\alpha'}{2}}\sum_{n\neq0}\alpha_n^\mu e^{-in\sigma^-}\\
+					&=\sqrt{\frac{\alpha'}{2}}\alpha_0^\mu +\sqrt{\frac{\alpha'}{2}}\sum_{n\neq0}\alpha_n^\mu e^{-in\sigma^-} = \sqrt{\frac{\alpha'}{2}}\sum_{n}\alpha_n^\mu e^{-in\sigma^-}\label{eq:dminusX}
+\end{align}
+where the $n=0$ term corresponds to $\alpha_0^\mu = (\sqrt{\alpha'/2})p^\mu$ (this was why we introduced the constant terms in the fourier expansion initially, to get cleaner constraints). Thus the constraint becomes,
+\begin{align}
+	(\partial_-X)^2 &= \sqrt{\frac{\alpha'}{2}}\sum_{m}\alpha_m^\mu e^{-im\sigma^-}\sqrt{\frac{\alpha'}{2}}\sum_{p}(\alpha_p)_\mu e^{-ip\sigma^-}=\frac{\alpha'}{2}\sum_{m,p}\alpha_m^\mu (\alpha_p)_\mu e^{-i(m+p)\sigma^-}\\
+	&=\frac{\alpha'}{2}\sum_{m,n}\alpha_m\cdot\alpha_{n-m}e^{-in\sigma^-}\equiv \alpha'\sum_n L_n e^{-in\sigma^-}=0
+\end{align}
+where $L_n = \frac{1}{2}\sum_m\alpha_{n-m}\cdot\alpha_m$. Similarly for the left moving wave,
+\begin{align}
+	&\alpha'\sum_n \tilde{L}_n e^{-in\sigma^+}=0\\
+	\text{where } &\tilde{L}_n=\frac{1}{2}\sum_m \tilde{\alpha}_{n-m}\cdot \tilde{\alpha}_m \text{ and } \tilde{\alpha}_0^\mu = \sqrt{\frac{\alpha'}{2}}p^\mu = \alpha_0^\mu
+\end{align}
+$L_n, \tilde{L}_n$ are the Fourier modes of the constraints and they're referred to as the 'Virasoro Generators'. These modes come with their own (infinite) constraints:
+\begin{equation}
+	L_n=\tilde{L}_n=0 \quad\forall n 
+\end{equation}
+Recall that we had a momentum term in our expansions which we set to $\alpha_0^\mu$ and swallowed into the summation, and also that the square of the momentum gives the rest mass of a particle. For a slightly more physically understanding of this sytem, we can split the Virasoro generator sums into $n=0$ and $n\neq0$ terms,
+\begin{align}
+	L_0 &= \frac{1}{2}\sum_m\alpha_m\cdot\alpha_{-m} = \frac{1}{2}(\alpha_0^2+2\sum_{m>0}\alpha_m\cdot\alpha_{-m})=0\\
+	\implies \frac{\alpha'}{2}p^2&=\alpha_0^2=-2\sum_{m>0}\alpha_m\cdot\alpha_{-m}
+\end{align}
+Doing the same for $\tilde{L}_0$, we're left with,
+\begin{align}
+	M = \frac{4}{\alpha'}\sum_{n>0}\alpha_n\cdot\alpha_{-n}=\frac{4}{\alpha'}\sum_{n>0}\tilde{\alpha}_n\cdot\tilde{\alpha}_{-n}i\label{eq:levelmatching}
+\end{align}
+This is also known as the mass-shell condition. What we have here an expression for the rest mass in terms of the Reggie slope ($\alpha'$) and the left and right moving waves independently. When we quantize the string, the summations will represent some sort of a Number Operator representing the total energy of the corresponding oscillation mode.\\
+
+\textbf{Checkpoint:} We wrote down the equations of motion from the Polyakov action which gave us the free wave equation. Since we intrdouced the metric as a free field we found that the corresponding equation of motion gave rise to two constraints and also allowed us to define the stress-energy tensor. Then we introduced a new coordinate system which served two purposes, it simplified the calculations and the constraints, and it gave a more physical understanding of the wave solutions. Solving the constraint, we introduced the Virasoro generators and found the mass shell condition which will become more relevant once we quantize the system. In the rest of the report, we will quantize the string using a method called Lightcone Quantization and see how the spacetime metric emerges from the perspective of the worldsheet. After introducing some basic ideas about the quantum theory, we will lay the basic groundwork that goes into deriving Einstein's field equations using the $\beta$-functions that arise as a result of generalizing the Polyakov action using a generic background metric.
+
 \subsection{Quantizing the String}
-\section{Aside: Conformal Field Theory}
-Dump the basic ideas and overall structure here.
+The lightcone quantization method is to solve the classical constraints (ie. find a parameterization of the classical solutions) of the system and then quantize the solutions (as opposed to first quantizing the string and then solving the constraints). In the previous section, we used the conformal symmetry to set the worldsheet metric flat but we didn't make use of the gauge invariance of the string coordinates $\sigma\rightarrow\tilde{\sigma}(\sigma)$. In lightcone coordinates this would look like,
+\begin{equation}
+	\sigma^+\rightarrow\tilde{\sigma}^+(\sigma^+)\quad\sigma^-\rightarrow\tilde{\sigma}^-(\sigma^-)
+\end{equation}
+The metric in terms of the lightcone coordinates is:
+\begin{equation}
+	ds^2=-d^2\tau+d^2\sigma = -d\sigma^+d\sigma^-
+\end{equation}
+which means that such a transformation would scale the flat metric by some overall factor (which again can be determined applying the chain rule). Since we have Weyl invariance, we could always get rid of this factor to retrieve the flat metric. We can thus fix this invaraince using the lightcone gauge. Before fixing the gauge, we introduce lightcone coordinates in the target space (in a similar fashion to the way we did on the worldsheet).
+\begin{equation}
+	X^\pm = \sqrt{\frac{1}{2}}(X^0\pm X^{D-1})\label{eq:lc_spacetime}
+\end{equation}
+where the factor of $\sqrt{1/2}$ is introduced for later convenience. This system (like in the worldsheet case) picks out the temporal and one spatial dimension to recast into new coordinates. The target space metric would then become:
+\begin{equation}
+	ds^2 = -dX^0dX^0+\sum_{i=1}^{D-2}dX^idX^i +dX^{D-1}dX^{D-1}= -2dX^+dX^-+ \sum_{i=1}^{D-2}dX^idX^i
+\end{equation}
+We can then rewrite the solution for the wave equation in Eq.\eqref{eq:sol_LR} as,
+\begin{align}
+	X^+=X^+_L(\sigma^+)+X^+_R(\sigma^-)\\
+	X^-=X^-_L(\sigma^+)+X^-_R(\sigma^-)
+\end{align}
+Now to fix the gauge, we can set $X^+$ to 
+\begin{align}
+	X^+_L &= \frac{1}{2}x^++\frac{1}{2}\alpha'p^+\sigma^+\quad\text{,}	X^+_R = \frac{1}{2}x^++\frac{1}{2}\alpha'p^+\sigma^-\\
+	\implies X^+ &= x^++\alpha'p^+\brak{\frac{\sigma^++\sigma^-}{2}}=x^++\alpha'p^+\tau\label{eq:xplus}
+\end{align}
+This is know as the lightcone gauge. We still have $X^-$ to solve for and we're going to do so after figuring out what the constraints look like in these new coordinates after fixing the lightcone gauge. By definition of this new coordinate system we have,
+\begin{align}
+	\partial_+X^+\partial_+X^- = \frac{1}{2}\brak{\partial_+X^0\partial_+X^0-\partial_+X^{D-1}\partial_+X^{D-1}}\\
+	\implies -2\partial_+X^+\partial_X^-= -\partial_+X^0\partial_+X^0+\partial_+X^{D-1}\partial_+X^{D-1}\label{eq:lcg_1}
+\end{align}
+Putting Eq.\eqref{eq:lcg_1} and the expression for $X^+$ from Eq.\eqref{eq:xplus} in the first constraint in Eq.\eqref{eq:constraint} we get,
+\begin{align}
+	\partial_+X_L^- = \frac{1}{\alpha'p^+}\sum_{i=1}^{D-2}\partial_+X^i\partial_+X^i\label{eq:xminus_c1}
+\end{align}
+Similarly for the second constraint in Eq.\eqref{eq:constraint} we get
+\begin{align}
+	\partial_-X_R^- = \frac{1}{\alpha'p^+}\sum_{i=1}^{D-2}\partial_-X^i\partial_-X^i \label{eq:xminus_c2}
+\end{align}
+Eqs.(\ref{eq:xminus_c1},\ref{eq:xminus_c2}) are the constraints we're going to use to infer what the terms in the usual mode expansion for $X^-$ mean. As earlier, the general form for $X^-$ is going to be 
+\begin{align}
+	X^-_L(\sigma^+) = \frac{1}{2}x^- +\frac{1}{2}\alpha'p^-\sigma^++i\sqrt{\frac{\alpha'}{2}}\sum_{n\neq0}\frac{1}{n}\tilde{\alpha}_n^-e^{-in\sigma^+}\\
+	X^-_R(\sigma^-) = \frac{1}{2}x^- +\frac{1}{2}\alpha'p^-\sigma^-+i\sqrt{\frac{\alpha'}{2}}\sum_{n\neq0}\frac{1}{n}{\alpha}_n^-e^{-in\sigma^-}
+\end{align}
+Using this form, the two constraints Eqs.(\ref{eq:xminus_c1},\ref{eq:xminus_c2}) and the expression in Eq.\eqref{eq:dminusX} (along with the corresponding form for the left moving wave) above, we can fix three quantities ($p^-,\tilde{\alpha}_n^-,\alpha_n^-$) while $x^-$ shows up as the integration constant. The oscillator mode $\alpha_n^-$ takes the form:
+\begin{align}
+	\alpha_n^- &= \sqrt{\frac{1}{2\alpha'}}\frac{1}{p^+}\sum_m\sum_{i=1}^{D-2}\alpha^i_{n-m}\alpha_m^i\\
+	\implies \alpha_0^- &=  \sqrt{\frac{1}{2\alpha'}}\frac{1}{p^+}\sum_m\sum_{i=1}^{D-2}\alpha^i_{-m}\alpha_m^i = \sqrt{\frac{\alpha'}{2}}p^-\\
+	2p^+p^- &= \frac{2}{\alpha'}\sum_{i=1}^{D-2}\brak{\alpha_0^i\alpha_0^i +\sum_{n\neq0}\alpha_{-n}^i\alpha_{n}^i}\\
+	\implies 2p^+p^--\sum_{i=1}^{D-2}p^ip^i &= \frac{4}{\alpha'}\sum_{i=1}^{D-2}\sum_{n>0}\alpha_{-n}^i\alpha_n^i\label{eq:pp_lc}
+\end{align}
+The left hand term in Eq.\eqref{eq:pp_lc} is simply the dot product of the momentum. Thus we arrive at the same level matching condition as in Eq.\eqref{eq:levelmatching} in these new coordinates (with the lightcone gauge) after applying a similar procedure for $\tilde{\alpha}_0^-$,
+\begin{equation}
+	M^2 = \frac{4}{\alpha'}\sum_{i=1}^{D-2}\sum_{n>0}\alpha_{-n}^i\alpha_n^i=\frac{4}{\alpha'}\sum_{i=1}^{D-2}\sum_{n>0}\tilde{\alpha}_{-n}^i\tilde{\alpha}_n^i\label{eq:masshell}
+\end{equation}
+\hrule
+\begin{enumerate}
+	\item Note on $p^-$: [provide some context as to what the center of mass position/momentum mean for the + and - coordinates]
+	\item write a little about promoting everything to an operator here and give general intro to quantum stuff: refer to Tong's notes on covariant quantization
+\end{enumerate}
+\hrule
+Having dealt with the classical constraints, it is finally time to quantize the string. We start off by writing down some of the commutation relations:
+\begin{align}
+	[x^i,p^j] = i\delta^{ij} \quad[x^-,p^+]=-i\nonumber\\
+	[\alpha^i_n,\alpha^j_m]=[\tilde{\alpha}^i_n,\tilde{\alpha}^j_m]=n\delta^{ij}\delta_{n+m,0}
+\end{align}
+Moreover, we could write the commutation relations for $x^+,p^-$ analogous to writing the relations for $t,H$ in the non relativistic context.
+\begin{equation}
+    [x^+,p^-] = -i
+\end{equation}
+This means that we can set our physical states to be the eigenstates of the momentum operator while also imposing the constraints in \eqref{eq:pp_lc} (and the corresponding left moving wave). We start by first defining the vacuum (or ground state) as follows,
+\begin{equation}
+    \hat{p}^\mu\ket{0;p}=p^\mu\ket{0;p} \quad\text{, }\alpha_i^n\ket{0;p}=\tilde{\alpha}^i\ket{0;p}=0
+\end{equation}
+To build the corresponding Fock space, we can simply use the creation operators $(\alpha^i_{-n}, \tilde{\alpha}^i_{-n})$. To write down the mass-shell constraint from Eq.\eqref{eq:masshell} in terms of operators we need to first perform normal ordering to prevent vacuum contributions (as is standard practice in quantum mechanics). Normal ordering implies that we move all the annihilation operators to the right and the creation operators to the left using commutation relations. However doing so, will introduce an overall constant in the mix; accordingly Eq.\eqref{eq:masshell} will then become
+\begin{equation}
+    M^2 = \frac{4}{\alpha'}\brak{\sum_{i=1}^{D-2}\sum_{n>0}\alpha_{-n}^i\alpha_n^i-a}=\frac{4}{\alpha'}\brak{\sum_{i=1}^{D-2}\sum_{n>0}\tilde{\alpha}_{-n}^i\tilde{\alpha}_n^i-a}\label{eq:masshellqm}
+\end{equation}
+For convenience, we can define the summation terms in Eq.\eqref{eq:masshellqm} as level operators,
+\begin{equation}
+    N=\sum_{i=1}^{D-2}\sum_{n>0}\alpha_{-n}^i\alpha_n^i \text{  and  } \tilde{N}=\sum_{i=1}^{D-2}\sum_{n>0}\tilde{\alpha}_{-n}^i\tilde{\alpha}_n^i
+\end{equation}
+Thus, the mass shell constraint can be rewritten,
+\begin{equation}
+    M^2=\frac{4}{\alpha'}(N-a) =\frac{4}{\alpha'}(\tilde{N}-a)
+\end{equation}
+To determine $a$, we're going to assume the case where there isn't any ambiguity (ie. there is no $a$ at all) and then perform normal ordering to see what it could be. First, the commutation relation for $[\alpha_n^i,\alpha_{-n}^i]$ reads,
+\begin{align}
+    [\alpha_n^i,\alpha_{-n}^i] = n\delta^{ii}\delta_{00}=n\\
+    \implies \alpha_{-n}^i\alpha_n^i = \alpha_n^i\alpha_{-n}^i-n
+\end{align}
+If we sum $i$ over $1\dots D-2$,
+\begin{equation}
+    \sum_{i=1}^{D-2}\alpha_{-n}^i\alpha_n^i=\sum_{i=1}^{D-2}\alpha_n^i\alpha_{-n}^i-n(D-2)
+\end{equation}
+Looking at the summation over $n$ closely in Eq.\eqref{eq:masshellqm}, we get
+\begin{align}
+    \frac{1}{2}\sum_{i=1}^{D-2}\sum_{n\neq0}\alpha_{-n}^i\alpha_n^i&= \frac{1}{2}\sum_{i=1}^{D-2}\sum_{n<0}\alpha_{-n}^i\alpha_n^i+\frac{1}{2}\sum_{i=1}^{D-2}\sum_{n>0}\alpha_{-n}^i\alpha_n^i\\
+    &= \frac{1}{2}\sum_{i=1}^{D-2}\sum_{n>0}\alpha_{-n}^i\alpha_n^i-\frac{1}{2}\sum_{n>0}n(D-2)+\frac{1}{2}\sum_{i=1}^{D-2}\sum_{n>0}\alpha_{-n}^i\alpha_n^i\\
+    &=\sum_{i=1}^{D-2}\sum_{n>0}\alpha_{-n}^i\alpha_n^i+\frac{D-2}{2}\sum_{n>0}n\label{eq:sum_n}
+\end{align}
+The second term in the above is clearly divergent and to make sense of the theory, we need to regularize it. Physically, this summation can be thought of as the sum of the zero-point energies of an infinite number of harmonic oscillators. We will introduce an exponential term into the expression to regulate the summation by imposing a UV cutoff (as is commonly done in quantum field theory) 
+\begin{align}
+	\sum_{n>0}n \rightarrow \sum_{n>0}ne^{-\epsilon n}&=\sum_{n=1}^\infty -\partial_\epsilon e^{-\epsilon n}\\
+    &= -\partial_\epsilon\brak{\frac{1}{1-e^{-\epsilon}}} = \frac{e^\epsilon}{(1-e^{-\epsilon})^2}
+\end{align}
+where we took the sum of an infinite geometric progression in the second last step. To isolate the diverging term, we will expand this expression as a power series,
+\begin{align}
+    \frac{e^{-\epsilon}}{(1-e^{-\epsilon})^2} = \frac{1-\epsilon+\epsilon^2/2-...}{(\epsilon-\epsilon^2/2-...)^2}= \frac{1-\epsilon+\epsilon^2/2-...}{\epsilon^2(1-\epsilon/2+\epsilon/6+...)^2}\\
+    =\frac{1}{\epsilon^2} + \frac{a_0+a_1\epsilon+..}{(1-\epsilon/2+\epsilon/6+...)^2}
+\end{align}
+where the $a_i$ are the coefficients which can be computed using partial fractions. The first term in the above expansion is the troublesome divergent term which we need to renormalize away. Then when we take the limit $\epsilon\rightarrow0$, we get the constant term $a_0=-1/12$.\\
+
+Another method to arrive at this estimate for the divergent summation is the zeta function regularization which evaluates the Dirichlet series $\zeta(s)=\sum_{n>0}n^{-s}$. The summation for this series has an analytic expression (Reimann Zeta Function),
+\begin{align}
+    \zeta(s) = \sum_{n>0}n^{-s} = \frac{1}{\Gamma(s)}\int_0^\infty \frac{x^{s-1}}{e^x-1}dx,\quad\quad \Gamma(s) = \int_0^\infty  x^{s-1}e^{-x}dx
+\end{align}
+Then by analytic continuation (which is essentially a way of extending the domain of this function), the summation $\sum_{n>0}n$ can be regularized to $-1/12$.\\
+
+Putting the expression for the divergent sum in Eq.\eqref{eq:sum_n} and comparing with the mass-shell constraint in Eq.\eqref{eq:masshellqm}, we thus have,
+\begin{equation}
+    a=\frac{D-2}{24}
+\end{equation}
+\textbf{[Aside] Physical understanding behind the renormalization: } Renormalization works on the idea that instead of the absolute values, it is the differences in the energy that are measurable. The zero point can then be redefined to get rid of any divergent terms (usually by introducing a UV-cutoff). The renormalization procedure is applied because the divergent term here, contributes to a cosmological term on the worldsheet. To preserve Weyl Invariance of the Polyakov action this must be set to zero.  Apart from that, there is also a finite constant energy term which is referred to as the Casimir Energy. This energy is a purely quantum phenomenon and is supposed to represent the ground state fluctuations of the string.\\
+
+With all the pieces set in place, we can now build the mass-spectrum of the string using the updated mass-shell constraint,
+\begin{align}
+    M^2 = \frac{4}{\alpha'}\brak{N-\frac{D-2}{24}} = \frac{4}{\alpha'}\brak{\tilde{N}-\frac{D-2}{24}}
+\end{align}
+\begin{enumerate}	
+	\item \textbf{Ground State:} The mass formula for the ground state $\ket{0;p}$ yields,
+    \begin{align}
+        M^2=-\frac{D-2}{6\alpha'}
+    \end{align}
+    Particles with complex masses (or negative mass-squared values) are known as tachyons. These particles are notorious for their disregard of the cosmic speed limit.
+	\item \textbf{First Excited State:} Before we discuss the first excited states, we need to first make a point about the spacetime lightcone coordinates we defined in Eq.\eqref{eq:lc_spacetime}. Since we made the choice of picking out the temporal and a specific spatial dimension, the calculations involving these coordinates may lose their Lorentz invariance. This becomes especially important in going from the classical to the quantum scenario, since it isn't necessary that symmetries survive quantization.\\
+
+    The first excited state can be expressed as an excitation of the ground state, ie. the ground state acted on by the creation operators $\alpha^i_{-1},\tilde{\alpha}^i_{-1}$. The resultant $(D-2)^2$ first excited states are then,
+    \begin{align}
+        \alpha^i_{-1}\tilde{\alpha}^j_{-1}\ket{0;p}\label{eq:firstexcited}
+    \end{align}
+    with masses,
+    \begin{align}
+        M^2 = \frac{4}{\alpha'}\brak{{1-\frac{D-2}{24}}}
+    \end{align}
+    The particles described by the first excited state transform under the rotations of $D-2$ (transverse) coordinates. This means that they live in $D$ dimensions and have $D-2$ degrees of freedom, which can only happen if the particles are massless. For example, in 4 dimensions the photon has an additional constraint due to the gauge symmetry which leaves it with only 2 degrees of freedom. Thus,
+    \begin{align}
+        M^2 &= \frac{4}{\alpha'}\brak{{1-\frac{D-2}{24}}}=0\\
+        \implies D&=26
+    \end{align}
+    The states im Eq.\eqref{eq:firstexcited} thus transform in a $24\otimes24$ rep of the $SO(24)$ group. This can be decomposed into 3 massless fields (trace, traceless symmetric and antisymmetric). These 3 fields are
+    \begin{enumerate}
+        \item \textbf{Traceless Symmetric} $G_{\mu\nu}$: This is the metric of spacetime and the first teaser at how GR emerges from string theory.
+        \item \textbf{Antisymmetric} $B_{\mu\nu}$: Kalb-Ramond field or the 2-form (couples to currents on the string worldsheet and shows up in the interaction terms when a low-energy effective action is considered)
+        \item \textbf{Traceless} $\Phi$: Dilation (scalar field that determines the strength of string coupling $g_s=e^\Phi$)
+    \end{enumerate}
+\end{enumerate}
+The traceless symmetric component of the first excited is the spacetime metric and the (massless spin 2) particles arising from this field are known as gravitons. This must be invariant under gauge transformations and the symmetry must survive when interaction terms are introduced\footnote{interaction terms aren't covered in this report}. The only way to do this is to ensure that the theory that results from the massless spin 2 particle obeys diffeomorphism invariance, which implies this theory is Einstein gravity.\\
+
+Essentially what we're doing is writing down the spacetime metric as a perturbation around flat space,
+\begin{align}
+    G_{\mu\nu}(X)=\eta_{\mu\nu}+h_{\mu\nu}(X)
+\end{align}
+and then canonically quantizing the field by promoting $h_{\mu\nu}$ to operators and introducing the corresponding annihilation and creation ($a_{\mu\nu},a^\dagger_{\mu\nu})$ operators. This however introduces negative norm states\footnote{Negative norm states are bad because they give rise to negative probabilities; they usually lead to `ghosts' in the Hilbert space} like $a^\dagger_{0i}\ket{0}$. However, the Einstein-Hilbert action, upto quadratic order in $h_{\mu\nu}$ is invariant under a gauge transformation (or diffeomorphism) $h_{\mu\nu}\rightarrow h_{\mu\nu}+\partial_\mu A_\nu+\partial_\nu A_\mu$. This gauge symmetry can then be used to decouple the negative norm states from all physical processes (beyond the scope of this report).
+
+
 
 
 \section{Deriving Einstein's Equations: Generalizing the Polyakov Action}
-
+In this final section, we will try to see the overall procedure to come at the source free Einstein equations by considering a generic background metric. Assuming a metric $G_{\mu\nu}$ in the target space, the Polyakov action becomes,
+\begin{align}
+    S=\frac{1}{4\pi\alpha'}\int d^2\sigma \sqrt{g}g^{\alpha\beta} \partial_\alpha X^\mu\partial_\beta X^\nu G_{\mu\nu}
+\end{align} is the 
+where $g_{\alpha\beta}$ is the worldsheet metric. In the conformal gauge, the action becomes,
+\begin{align}
+    S=\frac{1}{4\pi\alpha'}\int d^2\sigma G_{\mu\nu}\partial_\alpha X^\mu\partial^\alpha X^\nu\label{eq:act_poly_ein}
+\end{align}
+which looks like the action for an interacting 2-dimensional field theory (where $G_{\mu\nu}$ can be thought of as the self coupling). We can then expand around a classical solution,
+\begin{align}
+    X^\mu(\sigma)=x^\mu \sqrt{\alpha'}Y^\mu(\sigma)
+\end{align}
+where $\sqrt{\alpha'}$ is introduced to make $Y^\mu$ dimensionless. While the theory coming from Eq. \eqref{eq:act_poly_ein} is conformally invariant classically, it might not be so when we quantize it. Since conformal invariance is a gauge symmetry in string theory, we need this to be preserved as we head over to the quantum regime. In QFT, $\beta$-functions are used to measure the dependence of coupling parameters on the energy scale ($\mu$),
+\begin{align}
+    \beta(g) = \mu\frac{\partial g}{\partial \mu} = \frac{\partial g}{\partial(\ln\mu)}
+\end{align}
+For conformal invariance, the $\beta$ functional for the metric must be zero,
+\begin{align}
+    \beta_{\mu\nu}(G)&\sim \mu\frac{\partial G_{\mu\nu}}{\partial\mu},\\
+    \beta_{\mu\nu}(G)&=0
+\end{align}
+If we pick Reimann Normal Coordinates for the expansion $X^\mu=x^\mu+\sqrt{\alpha'}Y^\mu$, then the metric will expand as (upto second order in Y)
+\begin{align}
+    G_{\mu\nu}(X)=\delta_{\mu\nu}-\frac{\alpha'}{3}R_{\mu\lambda\nu\kappa}(x)Y^\lambda Y^\kappa
+\end{align}
+The action then becomes,
+\begin{align}
+    S = \frac{1}{4\pi} \int d^2\sigma \partial Y^\mu \partial Y^\nu \delta_{\mu\nu}-\frac{\alpha'}{3}R_{\mu\lambda\nu\kappa}(x)Y^\lambda Y^\kappa\partial Y^\mu \partial Y^\nu
+\end{align}
+This is now ready to be treated like a 2-dimensional interacting quantum field theory. The propagator for a scalar particle is given by,
+\begin{align}
+    \langle{Y^\lambda(\sigma)Y^\kappa(\sigma')}\rangle=\frac{1}{2}\delta^{\lambda\kappa}\ln(\sigma-\sigma')^2
+\end{align}
+which diverges for $\sigma\rightarrow\sigma'$. This is reflecting the UV divergence that would otherwise show up in the momentum integral. To work around this divergence we will use $d=2+\epsilon$ dimensional regularization \cite{friedan paper here},
+\begin{align}
+\langle{Y^\lambda(\sigma)Y^\kappa(\sigma')}\rangle=2\pi\delta^{\lambda\kappa}\int \frac{d^{2+\epsilon}}{(2\pi)^{2+\epsilon}}\frac{e^ik(\sigma-\sigma'}{k^2}
+\end{align}
+To get rid of the $1/\epsilon$ term we add $-1/\epsilon R_{\mu\nu}\partial Y^\mu \partial Y^\nu$. This addition can be absorbed by the following renormalizations:
+\begin{align}
+    Y^\mu\rightarrow Y^\mu+\frac{\alpha'}{6\epsilon}R^\mu_\nu Y^\nu\\
+    G_{\mu\nu}-\rightarrow G_{\mu\nu}+\frac{\alpha'}{\epsilon}R_{\mu\nu}
+\end{align}
+This gives an expression for the $\beta$ function,
+\begin{align}
+    \beta_{\mu\nu}(G) = \frac{\alpha'}{\epsilon}R_{\mu\nu}=0\\
+    \implies R_{\mu\nu}=0
+\end{align}
+    This means that for the theory to be conformally invariant, the target space must be Ricci flat.
+    \begin{center}
+% \section*{THE END}
+\end{center}
+\hrule\vspace{0.3cm}
+\subsection*{References:}
+\begin{enumerate}
+		\item Joseph Polchinski, \href{https://doi.org/10.1017/CBO9780511816079}{String Theory}
+\item David Tong, \href{https://www.damtp.cam.ac.uk/user/tong/string.html}{Lectures on String Theory}
+	\item  Nick Hugget  Tiziani   a Vistarini, \href{http://philsci-archive.pitt.edu/11116/1/Huggett-Vistarini.pdf}{Deriving General Relativity from String Theory}
+	\item David Berenstein, \href{https://web.physics.ucsb.edu/~phys230A/w2016/Lecture_notes.html}{String Theory Lecture Notes}
+    \item Leo Brewin, \href{https://users.monash.edu.au/~leo/research/papers/files/lcb96-01.pdf}{Reimann Normal Coordinates Notes} 
+\end{enumerate}
 %\printbibliography
-\end{document}
+\end{document} 
