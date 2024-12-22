@@ -48,7 +48,7 @@
 
 \section{Lightning Review of General Relativity}
 % \subsection{Introduction and General Ideas}
-General Relativity is a geometric theory of gravity that discusses how matter warps spacetime and how spacetime in turn decides the trajectories of matter. It is one of the most successful models of gravity and has made numerous predictions that have stood the test of time (gravitational waves, gravitational lensing, perihilion precession in Mercury's orbit, gravitational redshift etc.). On the spacetime front, we use a mathematical quantity known as the metric to measure distances. In the absence of gravity (ie. flat spacetime) this metric is known as the Minkowski metric and takes the form $\eta_{\mu\nu}=\text{diag}(-1,1,1,1)$. This is evident how we define a line element in such a space,
+General Relativity is a geometric theory of gravity that discusses how matter warps spacetime and how spacetime in turn decides the trajectories of matter. It is one of the most successful models of gravity and has made numerous predictions that have stood the test of time (gravitational waves, gravitational lensing, perihilion precession in Mercury's orbit, gravitational redshift etc.). On the spacetime front, we use a mathematical quantity known as the metric to measure distances. In the absence of gravity (ie. flat spacetime) this metric is known as the Minkowski metric and takes the form $\eta_{\mu\nu}=\text{diag}(-1,1,1,1)$. This is evident in how we define a line element in such a space,
 \begin{align}
     ds^2 = -dt^2+dx^2+dy^2+dz^2 = \eta_{\mu\nu}dx^\mu dx^\nu
 \end{align}
@@ -68,11 +68,11 @@ These symbols (not tensors) are useful in defining covariant derivatives, descri
 \begin{align}
     R^\mu_{\sigma\nu\rho} = \Gamma^\mu_{\rho\sigma,\nu}-\Gamma^\mu_{\nu\sigma,\rho}+\Gamma^\mu_{\nu\lambda}\Gamma^\lambda_{\rho\sigma}-\Gamma^\mu_{\rho\lambda}\Gamma^\lambda_{\nu\sigma}
 \end{align}
-This tensor pops up when we try to write down the geodesic deviation equation-- an equation which measures the rate of change of separation of a family of geodesics (in flat space such a family would be parallel lines). Another meaningful quantity that contains information about the matter and corresponding source terms is the Stress-Energy tensor $T_{\mu\nu}$. The Einstein Field Equations are a set of equations that relate the geometry/curvature spacetime ($R^\mu_{\sigma\nu\rho}$) to matter ($T_{\mu\nu}$0=)
+This tensor pops up when we try to write down the geodesic deviation equation-- an equation which measures the rate of change of separation of a family of geodesics (in flat space such a family would be parallel lines). Another meaningful quantity that contains information about the matter and corresponding source terms is the Stress-Energy tensor $T_{\mu\nu}$. The Einstein Field Equations are a set of equations that relate the geometry/curvature spacetime ($R^\mu_{\sigma\nu\rho}$) to matter ($T_{\mu\nu}$)
 \begin{align}
     R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu} = 8\pi GT_{\mu\nu}
 \end{align}
-Here, $R_\mu\nu$ is known as the Ricci curvature tensor and it is obtained by contracting indices of the Reimann Curvature tensor. $R$ is the Ricci scalar (=Tr($R_{\mu\nu}$)) and $G$ is Newton's gravitation constant.\\
+Here, $R_{\mu\nu}$ is known as the Ricci curvature tensor and it is obtained by contracting indices of the Reimann Curvature tensor. $R$ is the Ricci scalar (=Tr($R_{\mu\nu}$)) and $G$ is Newton's gravitation constant.\\
 
 In vacuum, the source term is set to zero and the resultant vacuum Einstein's Field Equations are,
 \begin{align}
@@ -149,7 +149,7 @@ The action (which is proportional to the area) is thus:
 \begin{equation}
 	S = -T\int d^2\sigma \sqrt{-\gamma} = -T\int d^2\sigma \sqrt{(\dot{X}\cdot\dot{X})(X'\cdot X') - (\dot{X}\cdot X')^2}\label{eq:nambu_goto}
 \end{equation}
-This form of the action is known as the Nambu-Goto action. The proportionality constant $T$ here can be thought of as the 'tension' of the string. The Nambu-Goto action has two symmetries:
+This form of the action is known as the Nambu-Goto action. The proportionality constant $T$ here can be thought of as the `tension' of the string. The Nambu-Goto action has two symmetries:
 \begin{enumerate}
 	\item Poincar\'e symmetry, under the transformation $X^\mu \rightarrow \Lambda^\mu\,_\nu X^\nu + a^\mu$
 	\item Gauge invariance when the internal coordinates are rewritten, $\sigma^\mu \rightarrow \tilde{\sigma}^\mu(\sigma)$
@@ -289,7 +289,7 @@ Recall that we had a momentum term in our expansions which we set to $\alpha_0^\
 \end{align}
 Doing the same for $\tilde{L}_0$, we're left with,
 \begin{align}
-	M = \frac{4}{\alpha'}\sum_{n>0}\alpha_n\cdot\alpha_{-n}=\frac{4}{\alpha'}\sum_{n>0}\tilde{\alpha}_n\cdot\tilde{\alpha}_{-n}i\label{eq:levelmatching}
+	M = \frac{4}{\alpha'}\sum_{n>0}\alpha_n\cdot\alpha_{-n}=\frac{4}{\alpha'}\sum_{n>0}\tilde{\alpha}_n\cdot\tilde{\alpha}_{-n}\label{eq:levelmatching}
 \end{align}
 This is also known as the mass-shell condition. What we have here an expression for the rest mass in terms of the Reggie slope ($\alpha'$) and the left and right moving waves independently. When we quantize the string, the summations will represent some sort of a Number Operator representing the total energy of the corresponding oscillation mode.\\
 
@@ -343,7 +343,7 @@ Eqs.(\ref{eq:xminus_c1},\ref{eq:xminus_c2}) are the constraints we're going to u
 Using this form, the two constraints Eqs.(\ref{eq:xminus_c1},\ref{eq:xminus_c2}) and the expression in Eq.\eqref{eq:dminusX} (along with the corresponding form for the left moving wave) above, we can fix three quantities ($p^-,\tilde{\alpha}_n^-,\alpha_n^-$) while $x^-$ shows up as the integration constant. The oscillator mode $\alpha_n^-$ takes the form:
 \begin{align}
 	\alpha_n^- &= \sqrt{\frac{1}{2\alpha'}}\frac{1}{p^+}\sum_m\sum_{i=1}^{D-2}\alpha^i_{n-m}\alpha_m^i\\
-	\implies \alpha_0^- &=  \sqrt{\frac{1}{2\alpha'}}\frac{1}{p^+}\sum_m\sum_{i=1}^{D-2}\alpha^i_{-m}\alpha_m^i = \sqrt{\frac{\alpha'}{2}}p^-\\
+	\implies \alpha_0^- &=  \sqrt{\frac{1}{2\alpha'}}\frac{1}{p^+}\sum_m\sum_{i=1}^{D-2}\alpha^i_{-m}\alpha_m^i = \sqrt{\frac{\alpha'}{2}}p^-\label{eq:pminus_constraint}\\
 	2p^+p^- &= \frac{2}{\alpha'}\sum_{i=1}^{D-2}\brak{\alpha_0^i\alpha_0^i +\sum_{n\neq0}\alpha_{-n}^i\alpha_{n}^i}\\
 	\implies 2p^+p^--\sum_{i=1}^{D-2}p^ip^i &= \frac{4}{\alpha'}\sum_{i=1}^{D-2}\sum_{n>0}\alpha_{-n}^i\alpha_n^i\label{eq:pp_lc}
 \end{align}
@@ -351,13 +351,10 @@ The left hand term in Eq.\eqref{eq:pp_lc} is simply the dot product of the momen
 \begin{equation}
 	M^2 = \frac{4}{\alpha'}\sum_{i=1}^{D-2}\sum_{n>0}\alpha_{-n}^i\alpha_n^i=\frac{4}{\alpha'}\sum_{i=1}^{D-2}\sum_{n>0}\tilde{\alpha}_{-n}^i\tilde{\alpha}_n^i\label{eq:masshell}
 \end{equation}
-\hrule
-\begin{enumerate}
-	\item Note on $p^-$: [provide some context as to what the center of mass position/momentum mean for the + and - coordinates]
-	\item write a little about promoting everything to an operator here and give general intro to quantum stuff: refer to Tong's notes on covariant quantization
-\end{enumerate}
-\hrule
-Having dealt with the classical constraints, it is finally time to quantize the string. We start off by writing down some of the commutation relations:
+
+The center of mass and momentum of the string is described by the zero mode, $x^i, p^i, x^-, p^+$ , whereas the most general solution is described by the transverse oscillator modes $\alpha_n^i$ and $\tilde{\alpha}n^i$. $x^+$ can be absorbed by a shift in $\tau$ by definition of the lightcone gauge, and we applied two constraints on $p^-$ in Eq. \eqref{eq:pminus_constraint} (and the corresponding left moving condition). $p^-$ can be thought of as the lightcone hamiltonian\\
+
+Having dealt with the classical constraints, it is finally time to quantize the string. In covariant quantization, we would first promote everything (position, momentum, excitation modes) to an operator and write down the corresponding commutation relations. Then we would perform mode expansions to get at the commutation relations for the terms present in the expansions for $X^\mu$ above. ($\alpha_n^i,\tilde{\alpha}^n_i$) in this setup become the annihilation and creation operators and to build the Fock space, we define a ground state and then act the creation operator to build a spectrum step by step. We would then introduce the physical constraints which would come in handy to deal with some negative-norm states in the Fock space. In the current paradigm however, we've already dealt with the constraints of the system. We can thus proceed with quantization directly without having to worry about ghost states or any other `unphysical' phenomena. We start off by writing down some of the commutation relations:
 \begin{align}
 	[x^i,p^j] = i\delta^{ij} \quad[x^-,p^+]=-i\nonumber\\
 	[\alpha^i_n,\alpha^j_m]=[\tilde{\alpha}^i_n,\tilde{\alpha}^j_m]=n\delta^{ij}\delta_{n+m,0}
@@ -446,20 +443,20 @@ With all the pieces set in place, we can now build the mass-spectrum of the stri
         M^2 &= \frac{4}{\alpha'}\brak{{1-\frac{D-2}{24}}}=0\\
         \implies D&=26
     \end{align}
-    The states im Eq.\eqref{eq:firstexcited} thus transform in a $24\otimes24$ rep of the $SO(24)$ group. This can be decomposed into 3 massless fields (trace, traceless symmetric and antisymmetric). These 3 fields are
+    The states in Eq.\eqref{eq:firstexcited} thus transform in a $24\otimes24$ rep of the $SO(24)$ group. This can be decomposed into 3 massless fields (trace, traceless symmetric and antisymmetric). These 3 fields are
     \begin{enumerate}
         \item \textbf{Traceless Symmetric} $G_{\mu\nu}$: This is the metric of spacetime and the first teaser at how GR emerges from string theory.
         \item \textbf{Antisymmetric} $B_{\mu\nu}$: Kalb-Ramond field or the 2-form (couples to currents on the string worldsheet and shows up in the interaction terms when a low-energy effective action is considered)
         \item \textbf{Traceless} $\Phi$: Dilation (scalar field that determines the strength of string coupling $g_s=e^\Phi$)
     \end{enumerate}
 \end{enumerate}
-The traceless symmetric component of the first excited is the spacetime metric and the (massless spin 2) particles arising from this field are known as gravitons. This must be invariant under gauge transformations and the symmetry must survive when interaction terms are introduced\footnote{interaction terms aren't covered in this report}. The only way to do this is to ensure that the theory that results from the massless spin 2 particle obeys diffeomorphism invariance, which implies this theory is Einstein gravity.\\
+The traceless symmetric component of the first excited is the spacetime metric and the (massless spin 2) particles arising from this field are known as gravitons. This must be invariant under gauge transformations and the symmetry must survive when interaction terms are introduced\footnote{interaction terms aren't covered in this report}. The only way to do this is to ensure that the theory that results from the massless spin 2 particle obeys diffeomorphism invariance.\\
 
 Essentially what we're doing is writing down the spacetime metric as a perturbation around flat space,
 \begin{align}
     G_{\mu\nu}(X)=\eta_{\mu\nu}+h_{\mu\nu}(X)
 \end{align}
-and then canonically quantizing the field by promoting $h_{\mu\nu}$ to operators and introducing the corresponding annihilation and creation ($a_{\mu\nu},a^\dagger_{\mu\nu})$ operators. This however introduces negative norm states\footnote{Negative norm states are bad because they give rise to negative probabilities; they usually lead to `ghosts' in the Hilbert space} like $a^\dagger_{0i}\ket{0}$. However, the Einstein-Hilbert action, upto quadratic order in $h_{\mu\nu}$ is invariant under a gauge transformation (or diffeomorphism) $h_{\mu\nu}\rightarrow h_{\mu\nu}+\partial_\mu A_\nu+\partial_\nu A_\mu$. This gauge symmetry can then be used to decouple the negative norm states from all physical processes (beyond the scope of this report).
+and then canonically quantizing the field by promoting $h_{\mu\nu}$ to operators and introducing the corresponding annihilation and creation ($a_{\mu\nu},a^\dagger_{\mu\nu})$ operators. This introduces negative norm states\footnote{Negative norm states are bad because they give rise to negative probabilities; they usually lead to `ghosts' in the Hilbert space} like $a^\dagger_{0i}\ket{0}$. However, the Einstein-Hilbert action, upto quadratic order in $h_{\mu\nu}$ is invariant under a gauge transformation (or diffeomorphism) $h_{\mu\nu}\rightarrow h_{\mu\nu}+\partial_\mu A_\nu+\partial_\nu A_\mu$. This gauge symmetry can then be used to decouple the negative norm states from all physical processes (beyond the scope of this report). The gauge symmetry introduced in terms of $h_{\mu\nu}$ is the same as diffeomorphism invariance in general relativity.
 
 
 
@@ -475,7 +472,7 @@ where $g_{\alpha\beta}$ is the worldsheet metric. In the conformal gauge, the ac
 \end{align}
 which looks like the action for an interacting 2-dimensional field theory (where $G_{\mu\nu}$ can be thought of as the self coupling). We can then expand around a classical solution,
 \begin{align}
-    X^\mu(\sigma)=x^\mu \sqrt{\alpha'}Y^\mu(\sigma)
+    X^\mu(\sigma)=x^\mu +\sqrt{\alpha'}Y^\mu(\sigma)
 \end{align}
 where $\sqrt{\alpha'}$ is introduced to make $Y^\mu$ dimensionless. While the theory coming from Eq. \eqref{eq:act_poly_ein} is conformally invariant classically, it might not be so when we quantize it. Since conformal invariance is a gauge symmetry in string theory, we need this to be preserved as we head over to the quantum regime. In QFT, $\beta$-functions are used to measure the dependence of coupling parameters on the energy scale ($\mu$),
 \begin{align}
@@ -498,25 +495,25 @@ This is now ready to be treated like a 2-dimensional interacting quantum field t
 \begin{align}
     \langle{Y^\lambda(\sigma)Y^\kappa(\sigma')}\rangle=\frac{1}{2}\delta^{\lambda\kappa}\ln(\sigma-\sigma')^2
 \end{align}
-which diverges for $\sigma\rightarrow\sigma'$. This is reflecting the UV divergence that would otherwise show up in the momentum integral. To work around this divergence we will use $d=2+\epsilon$ dimensional regularization \cite{friedan paper here},
+which diverges for $\sigma\rightarrow\sigma'$. This is reflecting the UV divergence that would otherwise show up in the momentum integral. To work around this divergence we will use $d=2+\epsilon$ dimensional regularization,
 \begin{align}
-\langle{Y^\lambda(\sigma)Y^\kappa(\sigma')}\rangle=2\pi\delta^{\lambda\kappa}\int \frac{d^{2+\epsilon}}{(2\pi)^{2+\epsilon}}\frac{e^ik(\sigma-\sigma'}{k^2}
+\langle{Y^\lambda(\sigma)Y^\kappa(\sigma')}\rangle=2\pi\delta^{\lambda\kappa}\int \frac{d^{2+\epsilon}}{(2\pi)^{2+\epsilon}}\frac{e^ik(\sigma-\sigma')}{k^2}
 \end{align}
-To get rid of the $1/\epsilon$ term we add $-1/\epsilon R_{\mu\nu}\partial Y^\mu \partial Y^\nu$. This addition can be absorbed by the following renormalizations:
+As $\sigma\rightarrow\sigma'$ the integral approaches $\delta^{\lambda\kappa}/\epsilon$. To get rid of the $1/\epsilon$ term we add $-1/\epsilon R_{\mu\nu}\partial Y^\mu \partial Y^\nu$. This addition can be absorbed by the following renormalizations:
 \begin{align}
     Y^\mu\rightarrow Y^\mu+\frac{\alpha'}{6\epsilon}R^\mu_\nu Y^\nu\\
-    G_{\mu\nu}-\rightarrow G_{\mu\nu}+\frac{\alpha'}{\epsilon}R_{\mu\nu}
+    G_{\mu\nu}\rightarrow G_{\mu\nu}+\frac{\alpha'}{\epsilon}R_{\mu\nu}
 \end{align}
 This gives an expression for the $\beta$ function,
 \begin{align}
     \beta_{\mu\nu}(G) = \frac{\alpha'}{\epsilon}R_{\mu\nu}=0\\
     \implies R_{\mu\nu}=0
 \end{align}
-    This means that for the theory to be conformally invariant, the target space must be Ricci flat.
-    \begin{center}
-% \section*{THE END}
-\end{center}
-\hrule\vspace{0.3cm}
+This means that for the theory to be conformally invariant, the target space must be Ricci flat. In other words, conformal invariance of string theory requires the target space to obey Einstein's field equations.\\
+
+\textbf{Final Checkpoint:} In the latter parts of this report, we quantized the string using lightcone quantization. As a results, we found that negative mass squared particles are the ground state particles whereas the first excited state gives rise to the graviton (among other fields). The masslessness of the first excited state also imposes the dimensionality of the target space to be 26. We then argued that the gauge symmetry of the graviton field was the same as the diffeomorphism invariance of general relativity. Following this, we wrote down a general Polyakov action in a curved spacetime and expanded the corresponding solution around a classical solution. For the theory to remain conformally invariant, we demanded the $\beta$ function of the metric be set to zero, and this condition gave rise to the source free Einstein field equations.
+
+\vspace{0.9cm}\hrule\vspace{0.3cm}
 \subsection*{References:}
 \begin{enumerate}
 		\item Joseph Polchinski, \href{https://doi.org/10.1017/CBO9780511816079}{String Theory}
